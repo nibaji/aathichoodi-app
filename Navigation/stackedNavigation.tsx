@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import PoemsList from "../Screens/PoemsList";
 import PoemDetails from "../Screens/PoemDetails";
+import AppColor from "../Theme/colors";
 
 export default function StackedNavigation() {
   return (
@@ -22,7 +23,16 @@ function Stacks() {
         component={PoemsList}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Poem" component={PoemDetails} />
+      <Stack.Screen
+        name="Poem"
+        component={PoemDetails}
+        options={({ route }: any) => ({
+          title: route.params.title,
+          headerTitleStyle: { color: AppColor.accent },
+          headerStyle: { backgroundColor: AppColor.primary },
+          headerTintColor: AppColor.accent,
+        })}
+      />
     </Stack.Navigator>
   );
 }

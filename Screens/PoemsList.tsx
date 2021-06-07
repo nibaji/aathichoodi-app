@@ -40,7 +40,14 @@ export default function PoemsList() {
 }
 
 const styles = StyleSheet.create({
-  main: { flex: 1, padding: 5, backgroundColor: AppColor.primary },
+  main: {
+    flex: 1,
+    padding: 5,
+    backgroundColor: AppColor.primary,
+    borderColor: AppColor.accent,
+    borderRadius: 14,
+    borderWidth: 5,
+  },
   kuralView: {
     padding: 5,
     margin: 5,

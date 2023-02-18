@@ -88,6 +88,10 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")  
+def keystoreProperties = new Properties()  
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -111,6 +115,12 @@ android {
         }
     }
     signingConfigs {
+        release { 
+            storeFile file(keystoreProperties['STORE_FILE'])  
+            storePassword keystoreProperties['STORE_PASSWORD'] 
+            keyAlias keystoreProperties['KEY_ALIAS']  
+            keyPassword keystoreProperties['KEY_PASSWORD'] 
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
@@ -125,7 +135,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

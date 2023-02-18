@@ -8,8 +8,8 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
-import * as Linking from 'expo-linking';
 import {useSelector, useDispatch} from 'react-redux';
 import {changeAppInfoVisibility} from '../Redux/appInfo';
 import AppColor from '../Theme/colors';
@@ -42,7 +42,7 @@ const AppInfo = () => {
               height: 150,
             }}
           />
-          <Text>
+          <Text style={styles.para}>
             The Ātticcūṭi (Tamil: ஆத்திச்சூடி) is a collection of single-line
             quotations written by Avvaiyar and organized in alphabetical order.
             There are 109 of these sacred lines
@@ -56,21 +56,22 @@ const AppInfo = () => {
             </Text>
           </View>
           <TouchableOpacity
-            onPress={() =>
-              Linking.openURL('https:github.com/tk120404/Aathichudi')
+            onPress={async () =>
+              await Linking.openURL('https:github.com/tk120404/Aathichudi')
             }>
             <Text style={styles.linktext}>AATHICHUDI REPO</Text>
           </TouchableOpacity>
 
           <Text style={styles.creditsTitleText}>App Author</Text>
-          <TouchableOpacity onPress={() => Linking.openURL('https:nibaji.xyz')}>
+          <TouchableOpacity
+            onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
             <Text style={styles.linktext}>Nidhun Balaji T R (nibaji)</Text>
           </TouchableOpacity>
 
           <Text style={styles.creditsTitleText}>App Source</Text>
           <TouchableOpacity
-            onPress={() =>
-              Linking.openURL('https:github.com/nibaji/aathichoodi-react')
+            onPress={async () =>
+              await Linking.openURL('https:github.com/nibaji/aathichoodi-react')
             }>
             <Text style={styles.linktext}>GIT</Text>
           </TouchableOpacity>
@@ -129,15 +130,21 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
     fontWeight: 'bold',
+    color: 'black',
+  },
+  para: {
+    color: 'grey',
   },
   creditsTitleText: {
     margin: 5,
     textAlign: 'center',
     fontWeight: 'bold',
+    color: 'black',
   },
   creditsText: {
     textAlign: 'justify',
     fontStyle: 'italic',
+    color: 'grey',
   },
   linktext: {
     marginBottom: 5,

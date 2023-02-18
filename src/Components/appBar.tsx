@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {Entypo} from '@expo/vector-icons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {useDispatch} from 'react-redux';
 import {changeAppInfoVisibility} from '../Redux/appInfo';
 import AppColor from '../Theme/colors';
 import AppInfo from './info';
 
+Entypo.loadFont();
 export default function AppBar() {
   const dispatch = useDispatch();
 

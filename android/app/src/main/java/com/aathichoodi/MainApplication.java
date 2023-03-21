@@ -1,4 +1,4 @@
-package xyz.nibaji.aathichoodi;
+package com.aathichoodi;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

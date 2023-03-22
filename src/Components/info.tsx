@@ -13,6 +13,7 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 import {changeAppInfoVisibility} from '../Redux/appInfo';
 import AppColor from '../Theme/colors';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const AppInfo = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const AppInfo = () => {
       onRequestClose={() => {
         Alert.alert('Modal has been closed.');
       }}>
-      <View style={styles.centeredView}>
+      <ScrollView style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
           <Image
@@ -48,61 +49,61 @@ const AppInfo = () => {
             There are 109 of these sacred lines
           </Text>
 
+          {/* Credits */}
           <Text style={styles.creditsTitleText}>Credits</Text>
           <View style={styles.creditSectionView}>
             <Text style={styles.creditsText}>
-              Huge Thanks to Arjunkumar, who made this huge data available in
-              his github for easy access.
+              Huge Thanks to ArjunKumar, who made this data available in his
+              github for easy access.
             </Text>
+            <TouchableOpacity
+              onPress={async () =>
+                await Linking.openURL('https:github.com/tk120404/Aathichudi')
+              }>
+              <Text style={styles.linkText}>AATHICHUDI REPO</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={async () =>
-              await Linking.openURL('https:github.com/tk120404/Aathichudi')
-            }>
-            <Text style={styles.linktext}>AATHICHUDI REPO</Text>
-          </TouchableOpacity>
 
+          {/* About App */}
           <Text style={styles.creditsTitleText}>App Author</Text>
           <TouchableOpacity
             onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
-            <Text style={styles.linktext}>Nidhun Balaji T R (nibaji)</Text>
+            <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
           </TouchableOpacity>
 
-          <Text style={styles.creditsTitleText}>App Source</Text>
+          <Text style={styles.creditsTitleText}>App Sourc</Text>
           <TouchableOpacity
             onPress={async () =>
-              await Linking.openURL('https:github.com/nibaji/aathichoodi-react')
+              await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
             }>
-            <Text style={styles.linktext}>GIT</Text>
+            <Text style={styles.linkText}>GIT</Text>
           </TouchableOpacity>
 
           <TouchableHighlight
-            style={styles.openButton}
+            style={styles.okButton}
             onPress={() => {
               dispatch(changeAppInfoVisibility());
-              //console.log(showInfo);
             }}>
             <Text style={styles.textStyle}>OKAY</Text>
           </TouchableHighlight>
         </View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
+    position: 'absolute',
+    left: '5%',
+    right: '5%',
+    top: '10%',
+    bottom: '10%',
   },
   modalView: {
-    margin: 20,
+    margin: 24,
     backgroundColor: AppColor.accent,
     borderRadius: 20,
-    // borderColor: AppColor.primary,
-    // borderWidth: 5,
     padding: 35,
     alignItems: 'center',
     shadowColor: '#000',
@@ -112,13 +113,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 8,
   },
-  openButton: {
+  okButton: {
     backgroundColor: AppColor.primary,
-    borderRadius: 20,
-    padding: 10,
-    marginTop: 9,
+    borderRadius: 8,
+    padding: 8,
+    marginTop: 8,
     elevation: 2,
   },
   textStyle: {
@@ -127,16 +128,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   modalText: {
-    marginBottom: 15,
+    marginBottom: 16,
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'black',
   },
   para: {
     color: 'grey',
+    paddingBottom: 8,
+    marginBottom: 16,
+    borderBottomColor: AppColor.primary,
+    borderBottomWidth: 0.5,
   },
   creditsTitleText: {
-    margin: 5,
+    marginBottom: 4,
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'black',
@@ -146,7 +151,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     color: 'grey',
   },
-  linktext: {
+  linkText: {
     marginBottom: 5,
     textAlign: 'center',
     fontWeight: 'bold',
@@ -158,6 +163,9 @@ const styles = StyleSheet.create({
   creditSectionView: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 8,
+    borderBottomColor: AppColor.primary,
+    borderBottomWidth: 0.5,
   },
 });
 

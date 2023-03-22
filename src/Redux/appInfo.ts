@@ -8,7 +8,6 @@ const AppInfoVisibility = createSlice({
   reducers: {
     changeAppInfoVisibility: state => {
       state.showAppInfo = !state.showAppInfo;
-      //console.log(state.showAppInfo);
     },
   },
 });

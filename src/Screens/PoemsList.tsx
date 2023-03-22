@@ -10,7 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import poems from '../Data/poems';
 import AppColor from '../Theme/colors';
-import AppBar from '../Components/appBar';
+import AppBar from '../Components/AppBar';
 
 export default function PoemsList() {
   const navigation = useNavigation();

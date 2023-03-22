@@ -1,13 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+import {RootStackParamList} from '../types/navigation';
+import {poemType} from '../types/poem';
 import AppColor from '../Theme/colors';
 
-interface PoemDetailsType {
-  route: any;
-}
-
-const PoemDetails: React.FC<PoemDetailsType> = ({route}) => {
-  const {poem: poemDetails} = route.params;
+type Props = NativeStackScreenProps<RootStackParamList>;
+const PoemDetails = ({route}: Props) => {
+  const {poem: poemDetails} = route.params as {poem: poemType};
 
   return (
     <View style={styles.main}>

@@ -7,17 +7,18 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+import {RootStackParamList} from '../types/navigation';
 import poems from '../Data/poems';
 import AppColor from '../Theme/colors';
-import AppBar from '../Components/AppBar';
+import {POEM} from '../types/screens';
 
-export default function PoemsList() {
-  const navigation = useNavigation();
+type Props = NativeStackScreenProps<RootStackParamList>;
+export default function PoemsList({navigation}: Props) {
   return (
     <View style={styles.main}>
       <StatusBar backgroundColor={AppColor.primary} />
-      <AppBar />
       <View style={styles.poemsView}>
         <FlatList
           data={poems.aathichoodi}
@@ -25,7 +26,7 @@ export default function PoemsList() {
           renderItem={({item}) => (
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Poem', {
+                navigation.navigate(POEM, {
                   poem: item,
                   title: `ஆத்திச்சூடி எண்: ${item.number}`,
                 });

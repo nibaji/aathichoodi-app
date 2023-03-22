@@ -1,8 +1,10 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
+
 import PoemsList from '../Screens/PoemsList';
 import PoemDetails from '../Screens/PoemDetails';
+import InfoButton from '../Components/InfoButton';
 import AppColor from '../Theme/colors';
 
 export default function StackedNavigation() {
@@ -13,7 +15,13 @@ export default function StackedNavigation() {
   );
 }
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+
+const stackHeaderOptions = {
+  headerTitleStyle: {color: AppColor.accent},
+  headerStyle: {backgroundColor: AppColor.primary},
+  headerTintColor: AppColor.accent,
+};
 
 function Stacks() {
   return (
@@ -21,16 +29,18 @@ function Stacks() {
       <Stack.Screen
         name="PoemsList"
         component={PoemsList}
-        options={{headerShown: false}}
+        options={{
+          headerTitle: 'ஆத்திச்சூடி',
+          headerRight: () => <InfoButton />,
+          ...stackHeaderOptions,
+        }}
       />
       <Stack.Screen
         name="Poem"
         component={PoemDetails}
-        options={({route}: any) => ({
-          title: route.params.title,
-          headerTitleStyle: {color: AppColor.accent},
-          headerStyle: {backgroundColor: AppColor.primary},
-          headerTintColor: AppColor.accent,
+        options={({route}) => ({
+          title: route?.params?.title,
+          ...stackHeaderOptions,
         })}
       />
     </Stack.Navigator>

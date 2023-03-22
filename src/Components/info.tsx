@@ -60,7 +60,7 @@ const AppInfo = () => {
               onPress={async () =>
                 await Linking.openURL('https:github.com/tk120404/Aathichudi')
               }>
-              <Text style={styles.linkText}>AATHICHUDI REPO</Text>
+              <Text style={styles.linkText}>POEMS</Text>
             </TouchableOpacity>
           </View>
 
@@ -71,7 +71,7 @@ const AppInfo = () => {
             <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
           </TouchableOpacity>
 
-          <Text style={styles.creditsTitleText}>App Sourc</Text>
+          <Text style={styles.creditsTitleText}>App Source</Text>
           <TouchableOpacity
             onPress={async () =>
               await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
@@ -156,6 +156,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     color: AppColor.primary,
+    textDecorationLine: 'underline',
+    textDecorationColor: AppColor.primary,
   },
   creditRowView: {
     flexDirection: 'row',

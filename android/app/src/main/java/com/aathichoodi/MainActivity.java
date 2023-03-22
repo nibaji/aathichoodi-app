@@ -1,4 +1,4 @@
-package com.aathichoodi;
+package xyz.nibaji.aathichoodi;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -4,7 +4,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {useDispatch} from 'react-redux';
 
 import {changeAppInfoVisibility} from '../Redux/appInfo';
-import AppInfo from './Info';
+import InfoModal from './InfoModal';
 
 Entypo.loadFont();
 export default function InfoButton() {
@@ -19,7 +19,7 @@ export default function InfoButton() {
       <TouchableOpacity onPress={onPressInfoHandle}>
         <Entypo name="info-with-circle" size={24} color="white" />
       </TouchableOpacity>
-      <AppInfo />
+      <InfoModal />
     </>
   );
 }

@@ -15,15 +15,10 @@ import {changeAppInfoVisibility} from '../Redux/appInfo';
 import AppColor from '../Theme/colors';
 import {ScrollView} from 'react-native-gesture-handler';
 
-const AppInfo = () => {
+const InfoModal = () => {
   const dispatch = useDispatch();
-  // const showInfo: any = useSelector(
-  //   (state: any) => state.appInfoVisibility.showAppInfo
-  // );
 
   const {showAppInfo} = useSelector((state: any) => state.appInfoVisibility);
-
-  //console.log("modal" + showAppInfo);
 
   return (
     <Modal
@@ -53,15 +48,16 @@ const AppInfo = () => {
           <Text style={styles.creditsTitleText}>Credits</Text>
           <View style={styles.creditSectionView}>
             <Text style={styles.creditsText}>
-              Huge Thanks to ArjunKumar, who made this data available in his
-              github for easy access.
+              Huge Thanks to ArjunKumar, who made this data available in{' '}
+              <Text
+                style={styles.linkText}
+                onPress={async () =>
+                  await Linking.openURL('https:github.com/tk120404/Aathichudi')
+                }>
+                github
+              </Text>{' '}
+              for easy access.
             </Text>
-            <TouchableOpacity
-              onPress={async () =>
-                await Linking.openURL('https:github.com/tk120404/Aathichudi')
-              }>
-              <Text style={styles.linkText}>POEMS</Text>
-            </TouchableOpacity>
           </View>
 
           {/* About App */}
@@ -165,10 +161,11 @@ const styles = StyleSheet.create({
   creditSectionView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 16,
+    paddingBottom: 8,
     borderBottomColor: AppColor.primary,
     borderBottomWidth: 0.5,
   },
 });
 
-export default AppInfo;
+export default InfoModal;

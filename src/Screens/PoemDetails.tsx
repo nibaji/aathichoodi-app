@@ -16,15 +16,17 @@ const PoemDetails = ({route}: Props) => {
         <Text style={styles.poem}>{poemDetails.poem}</Text>
       </View>
 
-      <View style={styles.titleDetailsHolder}>
-        <Text style={styles.titleText}>விளக்கம்</Text>
+      <View style={styles.detailsHolder}>
+        <View style={styles.titleDetailsHolder}>
+          <Text style={styles.titleText}>விளக்கம்</Text>
 
-        <Text style={styles.detailsText}>{poemDetails.paraphrase}</Text>
-      </View>
+          <Text style={styles.detailsText}>{poemDetails.paraphrase}</Text>
+        </View>
 
-      <View style={styles.titleDetailsHolder}>
-        <Text style={styles.titleText}>Translation</Text>
-        <Text style={styles.detailsText}>{poemDetails.translation}</Text>
+        <View style={styles.titleDetailsHolder}>
+          <Text style={styles.titleText}>Translation</Text>
+          <Text style={styles.detailsText}>{poemDetails.translation}</Text>
+        </View>
       </View>
     </View>
   );
@@ -33,7 +35,7 @@ const PoemDetails = ({route}: Props) => {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    padding: 5,
+    padding: 8,
     backgroundColor: AppColor.accent,
   },
   poemView: {
@@ -51,6 +53,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: AppColor.primary,
   },
+  detailsHolder: {
+    paddingHorizontal: 8,
+  },
   titleDetailsHolder: {
     alignItems: 'flex-start',
     flexWrap: 'wrap',
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   titleText: {
-    padding: 5,
+    padding: 8,
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: 18,
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   detailsText: {
-    padding: 5,
+    padding: 8,
     textAlign: 'justify',
     fontSize: 14,
     color: AppColor.primary,

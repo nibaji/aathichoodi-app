@@ -36,6 +36,7 @@ export default function PoemsList({navigation}: Props) {
               </View>
             </TouchableOpacity>
           )}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
           showsVerticalScrollIndicator={false}
         />
       </View>
@@ -59,13 +60,15 @@ const styles = StyleSheet.create({
   },
 
   poemView: {
-    padding: 5,
-    margin: 5,
-    borderColor: 'grey',
-    borderBottomWidth: 1,
+    padding: 4,
+    margin: 4,
+  },
+  separator: {
+    borderColor: AppColor.accent,
+    borderBottomWidth: 0.5,
   },
   poemText: {
-    padding: 5,
+    padding: 8,
     color: AppColor.accent,
   },
 });

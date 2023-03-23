@@ -25,7 +25,7 @@ export default function PoemsList({navigation}: Props) {
           keyExtractor={item => item.poem}
           renderItem={({item}) => (
             <Pressable
-              android_ripple={{radius: 500}}
+              android_ripple={{radius: 500, color: AppColor.primary}}
               onPress={() => {
                 navigation.navigate(POEM, {
                   poem: item,
@@ -48,28 +48,29 @@ export default function PoemsList({navigation}: Props) {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    padding: 5,
     backgroundColor: AppColor.primary,
   },
   poemsView: {
     flex: 1,
-    padding: 5,
-    backgroundColor: AppColor.primary,
+    marginBottom: '16%',
+    margin: 4,
+    backgroundColor: AppColor.accent,
     borderColor: AppColor.accent,
-    borderRadius: 14,
-    borderWidth: 5,
+    borderRadius: 8,
+    borderWidth: 4,
   },
 
   poemView: {
     padding: 4,
     margin: 4,
+    borderRadius: 8,
   },
   separator: {
-    borderColor: AppColor.accent,
+    borderColor: AppColor.primary,
     borderBottomWidth: 0.5,
   },
   poemText: {
     padding: 8,
-    color: AppColor.accent,
+    color: AppColor.primary,
   },
 });

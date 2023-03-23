@@ -3,9 +3,9 @@ import {
   View,
   Text,
   FlatList,
-  TouchableOpacity,
   StyleSheet,
   StatusBar,
+  Pressable,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -24,7 +24,8 @@ export default function PoemsList({navigation}: Props) {
           data={poems.aathichoodi}
           keyExtractor={item => item.poem}
           renderItem={({item}) => (
-            <TouchableOpacity
+            <Pressable
+              android_ripple={{radius: 500}}
               onPress={() => {
                 navigation.navigate(POEM, {
                   poem: item,
@@ -34,7 +35,7 @@ export default function PoemsList({navigation}: Props) {
               <View style={styles.poemView}>
                 <Text style={styles.poemText}>{item.poem}</Text>
               </View>
-            </TouchableOpacity>
+            </Pressable>
           )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           showsVerticalScrollIndicator={false}

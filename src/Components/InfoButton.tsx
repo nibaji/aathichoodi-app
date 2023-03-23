@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Pressable} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useDispatch} from 'react-redux';
 
@@ -16,9 +16,11 @@ export default function InfoButton() {
 
   return (
     <>
-      <TouchableOpacity onPress={onPressInfoHandle}>
+      <Pressable
+        android_ripple={{radius: 50, foreground: true}}
+        onPress={onPressInfoHandle}>
         <Entypo name="info-with-circle" size={24} color="white" />
-      </TouchableOpacity>
+      </Pressable>
       <InfoModal />
     </>
   );

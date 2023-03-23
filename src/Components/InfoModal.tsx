@@ -4,10 +4,9 @@ import {
   Modal,
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
   Image,
-  TouchableOpacity,
+  Pressable,
   Linking,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
@@ -62,26 +61,29 @@ const InfoModal = () => {
 
           {/* About App */}
           <Text style={styles.creditsTitleText}>App Author</Text>
-          <TouchableOpacity
+          <Pressable
+            android_ripple={{radius: 500}}
             onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
             <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
-          </TouchableOpacity>
+          </Pressable>
 
           <Text style={styles.creditsTitleText}>App Source</Text>
-          <TouchableOpacity
+          <Pressable
+            android_ripple={{radius: 500}}
             onPress={async () =>
               await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
             }>
             <Text style={styles.linkText}>GIT</Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableHighlight
+          <Pressable
+            android_ripple={{radius: 500}}
             style={styles.okButton}
             onPress={() => {
               dispatch(changeAppInfoVisibility());
             }}>
             <Text style={styles.textStyle}>OKAY</Text>
-          </TouchableHighlight>
+          </Pressable>
         </View>
       </ScrollView>
     </Modal>

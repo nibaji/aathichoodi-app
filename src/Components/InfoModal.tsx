@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Alert,
   Modal,
   StyleSheet,
   Text,
@@ -24,9 +23,7 @@ const InfoModal = () => {
       animationType="slide"
       transparent={true}
       visible={showAppInfo}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-      }}>
+      onRequestClose={() => dispatch(changeAppInfoVisibility())}>
       <ScrollView style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
@@ -62,14 +59,14 @@ const InfoModal = () => {
           {/* About App */}
           <Text style={styles.creditsTitleText}>App Author</Text>
           <Pressable
-            android_ripple={{radius: 500}}
+            android_ripple={{radius: 80}}
             onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
             <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
           </Pressable>
 
           <Text style={styles.creditsTitleText}>App Source</Text>
           <Pressable
-            android_ripple={{radius: 500}}
+            android_ripple={{radius: 16}}
             onPress={async () =>
               await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
             }>
@@ -77,11 +74,9 @@ const InfoModal = () => {
           </Pressable>
 
           <Pressable
-            android_ripple={{radius: 500}}
+            android_ripple={{radius: 28}}
             style={styles.okButton}
-            onPress={() => {
-              dispatch(changeAppInfoVisibility());
-            }}>
+            onPress={() => dispatch(changeAppInfoVisibility())}>
             <Text style={styles.textStyle}>OKAY</Text>
           </Pressable>
         </View>

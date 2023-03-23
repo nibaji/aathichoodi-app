@@ -26,15 +26,15 @@ export default function PoemsList({navigation}: Props) {
           renderItem={({item}) => (
             <Pressable
               android_ripple={{radius: 500, color: AppColor.primary}}
-              onPress={() => {
+              unstable_pressDelay={500}
+              style={styles.poemView}
+              onPress={() =>
                 navigation.navigate(POEM, {
                   poem: item,
                   title: `ஆத்திச்சூடி எண்: ${item.number}`,
-                });
-              }}>
-              <View style={styles.poemView}>
-                <Text style={styles.poemText}>{item.poem}</Text>
-              </View>
+                })
+              }>
+              <Text style={styles.poemText}>{item.poem}</Text>
             </Pressable>
           )}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -48,29 +48,27 @@ export default function PoemsList({navigation}: Props) {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    padding: 4,
     backgroundColor: AppColor.primary,
   },
   poemsView: {
-    flex: 1,
+    marginTop: 12,
     marginBottom: '16%',
     margin: 4,
     backgroundColor: AppColor.accent,
-    borderColor: AppColor.accent,
     borderRadius: 8,
-    borderWidth: 4,
   },
 
   poemView: {
-    padding: 4,
-    margin: 4,
-    borderRadius: 8,
+    padding: 16,
   },
   separator: {
     borderColor: AppColor.primary,
     borderBottomWidth: 0.5,
   },
   poemText: {
-    padding: 8,
     color: AppColor.primary,
+    flexWrap: 'wrap',
+    flex: 1,
   },
 });

@@ -59,14 +59,14 @@ const InfoModal = () => {
           {/* About App */}
           <Text style={styles.creditsTitleText}>App Author</Text>
           <Pressable
-            android_ripple={{radius: 80}}
+            android_ripple={{radius: 80, foreground: false}}
             onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
             <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
           </Pressable>
 
           <Text style={styles.creditsTitleText}>App Source</Text>
           <Pressable
-            android_ripple={{radius: 16}}
+            android_ripple={{radius: 16, foreground: false}}
             onPress={async () =>
               await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
             }>
@@ -74,7 +74,7 @@ const InfoModal = () => {
           </Pressable>
 
           <Pressable
-            android_ripple={{radius: 28}}
+            android_ripple={{radius: 28, foreground: false}}
             style={styles.okButton}
             onPress={() => dispatch(changeAppInfoVisibility())}>
             <Text style={styles.textStyle}>OKAY</Text>
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderBottomColor: AppColor.primary,
     borderBottomWidth: 0.5,
+    fontWeight: 'bold',
   },
   creditsTitleText: {
     marginBottom: 4,
@@ -143,6 +144,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     fontStyle: 'italic',
     color: 'grey',
+    fontWeight: 'bold',
   },
   linkText: {
     marginBottom: 5,

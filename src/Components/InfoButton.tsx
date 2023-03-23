@@ -16,9 +16,7 @@ export default function InfoButton() {
 
   return (
     <>
-      <Pressable
-        android_ripple={{radius: 10, foreground: true}}
-        onPress={onPressInfoHandle}>
+      <Pressable android_ripple={{radius: 10}} onPress={onPressInfoHandle}>
         <Entypo name="info-with-circle" size={24} color="white" />
       </Pressable>
       <InfoModal />

@@ -25,8 +25,12 @@ export default function PoemsList({navigation}: Props) {
           keyExtractor={item => item.poem}
           renderItem={({item}) => (
             <Pressable
-              android_ripple={{radius: 500, color: AppColor.primary}}
-              unstable_pressDelay={500}
+              android_ripple={{
+                radius: 500,
+                color: AppColor.primary,
+                foreground: false,
+              }}
+              pressRetentionOffset={100}
               style={styles.poemView}
               onPress={() =>
                 navigation.navigate(POEM, {
@@ -37,7 +41,7 @@ export default function PoemsList({navigation}: Props) {
               <Text style={styles.poemText}>{item.poem}</Text>
             </Pressable>
           )}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          ItemSeparatorComponent={(<View style={styles.separator} />) as any}
           showsVerticalScrollIndicator={false}
         />
       </View>
@@ -49,14 +53,16 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     padding: 4,
-    backgroundColor: AppColor.primary,
+    backgroundColor: AppColor.accent,
   },
   poemsView: {
-    marginTop: 12,
+    marginTop: 4,
+    padding: 4,
     marginBottom: '16%',
-    margin: 4,
     backgroundColor: AppColor.accent,
     borderRadius: 8,
+    borderWidth: 2,
+    borderColor: AppColor.primary,
   },
 
   poemView: {
@@ -68,6 +74,7 @@ const styles = StyleSheet.create({
   },
   poemText: {
     color: AppColor.primary,
+    fontWeight: 'bold',
     flexWrap: 'wrap',
     flex: 1,
   },

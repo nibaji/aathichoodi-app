@@ -2,14 +2,19 @@ import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useHeaderHeight} from '@react-navigation/elements';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 
 import {RootStackParamList} from '../types/navigation';
 import {poemType} from '../types/poem';
+import adUnitIds from '../../adUnitIds.json';
+
 import AppColor from '../Theme/colors';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 const PoemDetails = ({route}: Props) => {
   const {poem: poemDetails} = route.params as {poem: poemType};
+
+  const adUnitId = __DEV__ ? TestIds.BANNER : adUnitIds.banner;
 
   const headerHeight = useHeaderHeight();
 
@@ -31,6 +36,14 @@ const PoemDetails = ({route}: Props) => {
           <Text style={styles.detailsText}>{poemDetails.translation}</Text>
         </View>
       </View>
+
+      <BannerAd
+        unitId={adUnitId}
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        requestOptions={{
+          requestNonPersonalizedAdsOnly: true,
+        }}
+      />
     </ScrollView>
   );
 };

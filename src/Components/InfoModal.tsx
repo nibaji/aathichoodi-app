@@ -24,24 +24,27 @@ const InfoModal = () => {
       transparent={true}
       visible={showAppInfo}
       onRequestClose={() => dispatch(changeAppInfoVisibility())}>
-      <ScrollView style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
-          <Image
-            source={require('../assets/adaptive-icon.png')}
-            style={{
-              width: 150,
-              height: 150,
-            }}
-          />
-          <Text style={styles.para}>
-            The Ātticcūṭi (Tamil: ஆத்திச்சூடி) is a collection of single-line
-            quotations written by Avvaiyar and organized in alphabetical order.
-            There are 109 of these sacred lines
-          </Text>
+      <View style={styles.modalView}>
+        <ScrollView>
+          <View style={styles.creditSectionView}>
+            <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
+            <Image
+              source={require('../assets/adaptive-icon.png')}
+              style={{
+                width: 150,
+                height: 150,
+              }}
+            />
+            <Text style={styles.para}>
+              The Ātticcūṭi (Tamil: ஆத்திச்சூடி) is a collection of single-line
+              quotations written by Avvaiyar and organized in alphabetical
+              order. There are 109 of these sacred lines
+            </Text>
+          </View>
 
           {/* Credits */}
           <Text style={styles.creditsTitleText}>Credits</Text>
+
           <View style={styles.creditSectionView}>
             <Text style={styles.creditsText}>
               Huge Thanks to ArjunKumar, who made this data available in{' '}
@@ -55,61 +58,53 @@ const InfoModal = () => {
               for easy access.
             </Text>
           </View>
-
           {/* About App */}
-          <Text style={styles.creditsTitleText}>App Author</Text>
-          <Pressable
-            android_ripple={{radius: 80, foreground: false}}
-            onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
-            <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
-          </Pressable>
+          <View style={styles.creditSectionView}>
+            <Text style={styles.creditsTitleText}>App Author</Text>
+            <Pressable
+              android_ripple={{radius: 80, foreground: false}}
+              onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
+              <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
+            </Pressable>
 
-          <Text style={styles.creditsTitleText}>App Source</Text>
-          <Pressable
-            android_ripple={{radius: 16, foreground: false}}
-            onPress={async () =>
-              await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
-            }>
-            <Text style={styles.linkText}>GIT</Text>
-          </Pressable>
+            <Text style={styles.creditsTitleText}>App Source</Text>
+            <Pressable
+              android_ripple={{radius: 16, foreground: false}}
+              onPress={async () =>
+                await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
+              }>
+              <Text style={styles.linkText}>GIT</Text>
+            </Pressable>
+          </View>
 
           <Pressable
-            style={{marginTop: 16}}
             android_ripple={{radius: 16, foreground: false}}
             onPress={async () =>
               await Linking.openURL(
-                'https://raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
+                'https:raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
               )
             }>
             <Text style={styles.linkText}>Privacy Policy</Text>
           </Pressable>
-
           <Pressable
             android_ripple={{radius: 28, foreground: false}}
             style={styles.okButton}
             onPress={() => dispatch(changeAppInfoVisibility())}>
             <Text style={styles.textStyle}>OKAY</Text>
           </Pressable>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  centeredView: {
-    position: 'absolute',
-    left: '5%',
-    right: '5%',
-    top: '10%',
-    bottom: '10%',
-  },
   modalView: {
     margin: 24,
-    backgroundColor: AppColor.accent,
+    marginTop: 72,
     borderRadius: 8,
-    padding: 40,
-    alignItems: 'center',
+    padding: 24,
+    backgroundColor: AppColor.accent,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -123,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.primary,
     borderRadius: 8,
     padding: 8,
-    marginTop: 8,
+    marginHorizontal: 8,
     elevation: 2,
   },
   textStyle: {
@@ -139,10 +134,6 @@ const styles = StyleSheet.create({
   },
   para: {
     color: 'grey',
-    paddingBottom: 8,
-    marginBottom: 16,
-    borderBottomColor: AppColor.primary,
-    borderBottomWidth: 0.5,
     fontWeight: 'bold',
   },
   creditsTitleText: {

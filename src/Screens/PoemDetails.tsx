@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../types/navigation';
@@ -11,7 +11,7 @@ const PoemDetails = ({route}: Props) => {
   const {poem: poemDetails} = route.params as {poem: poemType};
 
   return (
-    <View style={styles.main}>
+    <ScrollView style={styles.main}>
       <View style={styles.poemView}>
         <Text style={styles.poem}>{poemDetails.poem}</Text>
       </View>
@@ -28,7 +28,7 @@ const PoemDetails = ({route}: Props) => {
           <Text style={styles.detailsText}>{poemDetails.translation}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

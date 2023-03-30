@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   poemsView: {
     marginTop: 4,
     padding: 4,
-    marginBottom: '16%',
+    marginBottom: 54,
     backgroundColor: AppColor.accent,
     borderRadius: 8,
     borderWidth: 2,

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useHeaderHeight} from '@react-navigation/elements';
 
 import {RootStackParamList} from '../types/navigation';
 import {poemType} from '../types/poem';
@@ -10,8 +11,10 @@ type Props = NativeStackScreenProps<RootStackParamList>;
 const PoemDetails = ({route}: Props) => {
   const {poem: poemDetails} = route.params as {poem: poemType};
 
+  const headerHeight = useHeaderHeight();
+
   return (
-    <ScrollView style={styles.main}>
+    <ScrollView style={{...styles.main, marginBottom: headerHeight}}>
       <View style={styles.poemView}>
         <Text style={styles.poem}>{poemDetails.poem}</Text>
       </View>

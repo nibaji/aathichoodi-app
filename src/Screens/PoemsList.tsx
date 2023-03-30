@@ -8,6 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useHeaderHeight} from '@react-navigation/elements';
 
 import {RootStackParamList} from '../types/navigation';
 import poems from '../Data/poems';
@@ -16,8 +17,9 @@ import {POEM} from '../types/screens';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 export default function PoemsList({navigation}: Props) {
+  const headerHeight = useHeaderHeight();
   return (
-    <View style={styles.main}>
+    <View style={{...styles.main, marginBottom: headerHeight}}>
       <StatusBar backgroundColor={AppColor.primary} />
       <View style={styles.poemsView}>
         <FlatList
@@ -56,9 +58,8 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.accent,
   },
   poemsView: {
-    marginTop: 4,
+    margin: 4,
     padding: 4,
-    marginBottom: 54,
     backgroundColor: AppColor.accent,
     borderRadius: 8,
     borderWidth: 2,

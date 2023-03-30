@@ -7,6 +7,7 @@ import {
   Image,
   Pressable,
   Linking,
+  useWindowDimensions,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {changeAppInfoVisibility} from '../Redux/appInfo';
@@ -16,6 +17,9 @@ import {ScrollView} from 'react-native-gesture-handler';
 const InfoModal = () => {
   const dispatch = useDispatch();
 
+  const windowWidth = useWindowDimensions().width;
+  const windowHeight = useWindowDimensions().height;
+
   const {showAppInfo} = useSelector((state: any) => state.appInfoVisibility);
 
   return (
@@ -24,7 +28,12 @@ const InfoModal = () => {
       transparent={true}
       visible={showAppInfo}
       onRequestClose={() => dispatch(changeAppInfoVisibility())}>
-      <View style={styles.modalView}>
+      <View
+        style={{
+          ...styles.modalView,
+          top: windowHeight * 0.1,
+          marginBottom: windowHeight * 0.15,
+        }}>
         <ScrollView>
           <View style={styles.creditSectionView}>
             <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
@@ -43,9 +52,8 @@ const InfoModal = () => {
           </View>
 
           {/* Credits */}
-          <Text style={styles.creditsTitleText}>Credits</Text>
-
           <View style={styles.creditSectionView}>
+            <Text style={styles.creditsTitleText}>Credits</Text>
             <Text style={styles.creditsText}>
               Huge Thanks to ArjunKumar, who made this data available in{' '}
               <Text
@@ -58,18 +66,19 @@ const InfoModal = () => {
               for easy access.
             </Text>
           </View>
+
           {/* About App */}
           <View style={styles.creditSectionView}>
             <Text style={styles.creditsTitleText}>App Author</Text>
             <Pressable
-              android_ripple={{radius: 80, foreground: false}}
+              android_ripple={{radius: 80}}
               onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
               <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
             </Pressable>
 
             <Text style={styles.creditsTitleText}>App Source</Text>
             <Pressable
-              android_ripple={{radius: 16, foreground: false}}
+              android_ripple={{radius: 16}}
               onPress={async () =>
                 await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
               }>
@@ -77,17 +86,20 @@ const InfoModal = () => {
             </Pressable>
           </View>
 
+          <View style={[styles.creditSectionView, styles.privacySectionView]}>
+            <Pressable
+              android_ripple={{radius: 56}}
+              onPress={async () =>
+                await Linking.openURL(
+                  'https:raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
+                )
+              }>
+              <Text style={styles.linkText}>Privacy Policy</Text>
+            </Pressable>
+          </View>
+
           <Pressable
-            android_ripple={{radius: 16, foreground: false}}
-            onPress={async () =>
-              await Linking.openURL(
-                'https:raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
-              )
-            }>
-            <Text style={styles.linkText}>Privacy Policy</Text>
-          </Pressable>
-          <Pressable
-            android_ripple={{radius: 28, foreground: false}}
+            android_ripple={{radius: windowWidth}}
             style={styles.okButton}
             onPress={() => dispatch(changeAppInfoVisibility())}>
             <Text style={styles.textStyle}>OKAY</Text>
@@ -100,8 +112,7 @@ const InfoModal = () => {
 
 const styles = StyleSheet.create({
   modalView: {
-    margin: 24,
-    marginTop: 72,
+    marginHorizontal: 24,
     borderRadius: 8,
     padding: 24,
     backgroundColor: AppColor.accent,
@@ -118,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.primary,
     borderRadius: 8,
     padding: 8,
-    marginHorizontal: 8,
+    margin: 8,
     elevation: 2,
   },
   textStyle: {
@@ -166,6 +177,10 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     borderBottomColor: AppColor.primary,
     borderBottomWidth: 0.5,
+  },
+  privacySectionView: {
+    borderBottomWidth: 0,
+    marginBottom: 0,
   },
 });
 

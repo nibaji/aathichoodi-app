@@ -74,6 +74,17 @@ const InfoModal = () => {
           </Pressable>
 
           <Pressable
+            style={{marginTop: 16}}
+            android_ripple={{radius: 16, foreground: false}}
+            onPress={async () =>
+              await Linking.openURL(
+                'https://raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
+              )
+            }>
+            <Text style={styles.linkText}>Privacy Policy</Text>
+          </Pressable>
+
+          <Pressable
             android_ripple={{radius: 28, foreground: false}}
             style={styles.okButton}
             onPress={() => dispatch(changeAppInfoVisibility())}>

@@ -36,8 +36,7 @@ export default function PoemsList({navigation}: Props) {
               style={styles.poemView}
               onPress={() =>
                 navigation.navigate(POEM, {
-                  poem: item,
-                  title: `ஆத்திச்சூடி எண்: ${item.number}`,
+                  poemNumber: item.number,
                 })
               }>
               <Text style={styles.poemText}>{item.poem}</Text>

@@ -1,9 +1,10 @@
-import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, Button} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 
+import poems from '../Data/poems';
 import {RootStackParamList} from '../types/navigation';
 import {poemType} from '../types/poem';
 import adUnitIds from '../../adUnitIds.json';
@@ -11,31 +12,45 @@ import adUnitIds from '../../adUnitIds.json';
 import AppColor from '../Theme/colors';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
-const PoemDetails = ({route}: Props) => {
-  const {poem: poemDetails} = route.params as {poem: poemType};
+const PoemDetails = ({route, navigation}: Props) => {
+  const initialPoemNumber = route.params?.poemNumber as number;
+
+  const aathichoodiLength = poems.aathichoodi.length;
+  const maxPoemNumber = poems.aathichoodi[aathichoodiLength - 1].number;
+  const minPoemNumber = poems.aathichoodi[0].number;
+
+  const [poemNumber, setPoemNumber] = useState<number>(initialPoemNumber);
+  const [poemDetails, setPoemDetails] = useState<poemType>();
 
   const adUnitId = __DEV__ ? TestIds.BANNER : adUnitIds.banner;
 
   const headerHeight = useHeaderHeight();
 
+  useEffect(() => {
+    navigation.setParams({title: `ஆத்திச்சூடி எண்: ${poemNumber}`});
+    setPoemDetails(poems.aathichoodi.find(p => p.number === poemNumber));
+  }, [poemNumber, navigation]);
+
   return (
-    <ScrollView style={{...styles.main, marginBottom: headerHeight}}>
-      <View style={styles.poemView}>
-        <Text style={styles.poem}>{poemDetails.poem}</Text>
-      </View>
-
-      <View style={styles.detailsHolder}>
-        <View style={styles.titleDetailsHolder}>
-          <Text style={styles.titleText}>விளக்கம்</Text>
-
-          <Text style={styles.detailsText}>{poemDetails.paraphrase}</Text>
+    <View style={styles.main}>
+      <ScrollView style={{marginBottom: headerHeight}}>
+        <View style={styles.poemView}>
+          <Text style={styles.poem}>{poemDetails?.poem}</Text>
         </View>
 
-        <View style={styles.titleDetailsHolder}>
-          <Text style={styles.titleText}>Translation</Text>
-          <Text style={styles.detailsText}>{poemDetails.translation}</Text>
+        <View style={styles.detailsHolder}>
+          <View style={styles.titleDetailsHolder}>
+            <Text style={styles.titleText}>விளக்கம்</Text>
+
+            <Text style={styles.detailsText}>{poemDetails?.paraphrase}</Text>
+          </View>
+
+          <View style={styles.titleDetailsHolder}>
+            <Text style={styles.titleText}>Translation</Text>
+            <Text style={styles.detailsText}>{poemDetails?.translation}</Text>
+          </View>
         </View>
-      </View>
+      </ScrollView>
 
       <BannerAd
         unitId={adUnitId}
@@ -43,8 +58,24 @@ const PoemDetails = ({route}: Props) => {
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
         }}
+        onAdLoaded={a => console.log(a)}
+        onAdFailedToLoad={a => console.log(a)}
       />
-    </ScrollView>
+      <View style={{...styles.bottomButtonsHolder, bottom: headerHeight}}>
+        <Button
+          color={AppColor.primary}
+          title="  <  "
+          onPress={() => setPoemNumber(poemNumber - 1)}
+          disabled={minPoemNumber === poemNumber}
+        />
+        <Button
+          color={AppColor.primary}
+          title="  >  "
+          onPress={() => setPoemNumber(poemNumber + 1)}
+          disabled={maxPoemNumber === poemNumber}
+        />
+      </View>
+    </View>
   );
 };
 
@@ -52,6 +83,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     padding: 8,
+    height: '100%',
     backgroundColor: AppColor.accent,
   },
   poemView: {
@@ -92,6 +124,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: AppColor.primary,
     flexWrap: 'wrap',
+  },
+  bottomButtonsHolder: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    marginBottom: 16,
+    justifyContent: 'space-around',
   },
 });
 

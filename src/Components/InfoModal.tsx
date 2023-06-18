@@ -96,6 +96,9 @@ const InfoModal = () => {
               }>
               <Text style={styles.linkText}>Privacy Policy</Text>
             </Pressable>
+            <Text style={[styles.creditsText, {textAlign: 'center'}]}>
+              v1.8.0
+            </Text>
           </View>
 
           <Pressable
@@ -104,6 +107,7 @@ const InfoModal = () => {
             onPress={() => dispatch(changeAppInfoVisibility())}>
             <Text style={styles.textStyle}>OKAY</Text>
           </Pressable>
+          <Text>v1.9.0</Text>
         </ScrollView>
       </View>
     </Modal>

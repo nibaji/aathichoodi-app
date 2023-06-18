@@ -107,7 +107,6 @@ const InfoModal = () => {
             onPress={() => dispatch(changeAppInfoVisibility())}>
             <Text style={styles.textStyle}>OKAY</Text>
           </Pressable>
-          <Text>v1.9.0</Text>
         </ScrollView>
       </View>
     </Modal>

@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Button} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  useWindowDimensions,
+} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
@@ -24,6 +31,7 @@ const PoemDetails = ({route, navigation}: Props) => {
 
   const adUnitId = __DEV__ ? TestIds.BANNER : adUnitIds.banner;
 
+  const windowWidth = useWindowDimensions().width;
   const headerHeight = useHeaderHeight();
 
   useEffect(() => {
@@ -62,18 +70,33 @@ const PoemDetails = ({route, navigation}: Props) => {
         onAdFailedToLoad={a => console.log(a)}
       />
       <View style={{...styles.bottomButtonsHolder, bottom: headerHeight}}>
-        <Button
-          color={AppColor.primary}
-          title="  <  "
-          onPress={() => setPoemNumber(poemNumber - 1)}
-          disabled={minPoemNumber === poemNumber}
-        />
-        <Button
-          color={AppColor.primary}
-          title="  >  "
-          onPress={() => setPoemNumber(poemNumber + 1)}
-          disabled={maxPoemNumber === poemNumber}
-        />
+        <Pressable
+          android_ripple={{radius: windowWidth, color: AppColor.accent}}
+          pressRetentionOffset={100}
+          style={[
+            styles.poemNavBtn,
+            minPoemNumber === poemNumber ? styles.poemNavBtnDisabled : null,
+          ]}
+          onPress={() => poemNumber > 0 && setPoemNumber(poemNumber - 1)}
+          disabled={minPoemNumber === poemNumber}>
+          <Text style={styles.navBtnText}>&nbsp;&nbsp;&lt;&nbsp;&nbsp;</Text>
+        </Pressable>
+        <Pressable
+          android_ripple={{
+            radius: windowWidth,
+            color: AppColor.accent,
+          }}
+          pressRetentionOffset={100}
+          style={[
+            styles.poemNavBtn,
+            maxPoemNumber === poemNumber ? styles.poemNavBtnDisabled : null,
+          ]}
+          onPress={() =>
+            poemNumber < maxPoemNumber && setPoemNumber(poemNumber + 1)
+          }
+          disabled={maxPoemNumber === poemNumber}>
+          <Text style={styles.navBtnText}>&nbsp;&nbsp;&gt;&nbsp;&nbsp;</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -132,6 +155,19 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 16,
     justifyContent: 'space-around',
+  },
+  poemNavBtn: {
+    backgroundColor: AppColor.primary,
+    borderRadius: 24,
+    alignItems: 'baseline',
+    padding: 12,
+  },
+  poemNavBtnDisabled: {
+    opacity: 0.5,
+  },
+  navBtnText: {
+    color: AppColor.accent,
+    textAlign: 'center',
   },
 });
 

@@ -24,96 +24,106 @@ const InfoModal = () => {
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={showAppInfo}
       onRequestClose={() => dispatch(changeAppInfoVisibility())}>
-      <View
-        style={{
-          ...styles.modalView,
-          top: windowHeight * 0.1,
-          marginBottom: windowHeight * 0.15,
-        }}>
-        <ScrollView>
-          <View style={styles.creditSectionView}>
-            <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
-            <Image
-              source={require('../assets/adaptive-icon.png')}
-              style={{
-                width: 150,
-                height: 150,
-              }}
-            />
-            <Text style={styles.para}>
-              The Ātticcūṭi (Tamil: ஆத்திச்சூடி) is a collection of single-line
-              quotations written by Avvaiyar and organized in alphabetical
-              order. There are 109 of these sacred lines
-            </Text>
-          </View>
+      <View style={styles.modalViewContainer}>
+        <View
+          style={{
+            ...styles.modalView,
+            top: windowHeight * 0.1,
+            marginBottom: windowHeight * 0.15,
+          }}>
+          <ScrollView>
+            <View style={styles.creditSectionView}>
+              <Text style={styles.modalText}>ஆத்திச்சூடி</Text>
+              <Image
+                source={require('../assets/adaptive-icon.png')}
+                style={{
+                  width: 150,
+                  height: 150,
+                }}
+              />
+              <Text style={styles.para}>
+                The Ātticcūṭi (Tamil: ஆத்திச்சூடி) is a collection of
+                single-line quotations written by Avvaiyar and organized in
+                alphabetical order. There are 109 of these sacred lines
+              </Text>
+            </View>
 
-          {/* Credits */}
-          <View style={styles.creditSectionView}>
-            <Text style={styles.creditsTitleText}>Credits</Text>
-            <Text style={styles.creditsText}>
-              Huge Thanks to ArjunKumar, who made this data available in{' '}
-              <Text
-                style={styles.linkText}
+            {/* Credits */}
+            <View style={styles.creditSectionView}>
+              <Text style={styles.creditsTitleText}>Credits</Text>
+              <Text style={styles.creditsText}>
+                Huge Thanks to ArjunKumar, who made this data available in{' '}
+                <Text
+                  style={styles.linkText}
+                  onPress={async () =>
+                    await Linking.openURL(
+                      'https:github.com/tk120404/Aathichudi',
+                    )
+                  }>
+                  github
+                </Text>{' '}
+                for easy access.
+              </Text>
+            </View>
+
+            {/* About App */}
+            <View style={styles.creditSectionView}>
+              <Text style={styles.creditsTitleText}>App Author</Text>
+              <Pressable
+                android_ripple={{radius: 80}}
+                onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
+                <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
+              </Pressable>
+
+              <Text style={styles.creditsTitleText}>App Source</Text>
+              <Pressable
+                android_ripple={{radius: 16}}
                 onPress={async () =>
-                  await Linking.openURL('https:github.com/tk120404/Aathichudi')
+                  await Linking.openURL(
+                    'https:github.com/nibaji/aathichoodi-app',
+                  )
                 }>
-                github
-              </Text>{' '}
-              for easy access.
-            </Text>
-          </View>
+                <Text style={styles.linkText}>GIT</Text>
+              </Pressable>
+            </View>
 
-          {/* About App */}
-          <View style={styles.creditSectionView}>
-            <Text style={styles.creditsTitleText}>App Author</Text>
+            <View style={[styles.creditSectionView, styles.privacySectionView]}>
+              <Pressable
+                android_ripple={{radius: 56}}
+                onPress={async () =>
+                  await Linking.openURL(
+                    'https:raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
+                  )
+                }>
+                <Text style={styles.linkText}>Privacy Policy</Text>
+              </Pressable>
+              <Text style={[styles.creditsText, {textAlign: 'center'}]}>
+                v1.8.1
+              </Text>
+            </View>
+
             <Pressable
-              android_ripple={{radius: 80}}
-              onPress={async () => await Linking.openURL('https:nibaji.xyz')}>
-              <Text style={styles.linkText}>Nidhun Balaji T R (nibaji)</Text>
+              android_ripple={{radius: windowWidth}}
+              style={styles.okButton}
+              onPress={() => dispatch(changeAppInfoVisibility())}>
+              <Text style={styles.textStyle}>OKAY</Text>
             </Pressable>
-
-            <Text style={styles.creditsTitleText}>App Source</Text>
-            <Pressable
-              android_ripple={{radius: 16}}
-              onPress={async () =>
-                await Linking.openURL('https:github.com/nibaji/aathichoodi-app')
-              }>
-              <Text style={styles.linkText}>GIT</Text>
-            </Pressable>
-          </View>
-
-          <View style={[styles.creditSectionView, styles.privacySectionView]}>
-            <Pressable
-              android_ripple={{radius: 56}}
-              onPress={async () =>
-                await Linking.openURL(
-                  'https:raw.githubusercontent.com/nibaji/aathichoodi-app/main/privacy-policy.txt',
-                )
-              }>
-              <Text style={styles.linkText}>Privacy Policy</Text>
-            </Pressable>
-            <Text style={[styles.creditsText, {textAlign: 'center'}]}>
-              v1.8.1
-            </Text>
-          </View>
-
-          <Pressable
-            android_ripple={{radius: windowWidth}}
-            style={styles.okButton}
-            onPress={() => dispatch(changeAppInfoVisibility())}>
-            <Text style={styles.textStyle}>OKAY</Text>
-          </Pressable>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  modalViewContainer: {
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    flex: 1,
+  },
   modalView: {
     marginHorizontal: 24,
     borderRadius: 8,

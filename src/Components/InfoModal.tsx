@@ -97,7 +97,7 @@ const InfoModal = () => {
               <Text style={styles.linkText}>Privacy Policy</Text>
             </Pressable>
             <Text style={[styles.creditsText, {textAlign: 'center'}]}>
-              v1.8.0
+              v1.8.1
             </Text>
           </View>
 

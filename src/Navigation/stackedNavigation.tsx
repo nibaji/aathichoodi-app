@@ -30,6 +30,7 @@ function Stacks() {
         name="PoemsList"
         component={PoemsList}
         options={{
+          animation: 'slide_from_right',
           headerTitle: 'ஆத்திச்சூடி',
           headerRight: () => <InfoButton />,
           ...stackHeaderOptions,
@@ -38,10 +39,10 @@ function Stacks() {
       <Stack.Screen
         name="Poem"
         component={PoemDetails}
-        options={({route}) => ({
-          title: route?.params?.title,
+        options={{
           ...stackHeaderOptions,
-        })}
+          animation: 'slide_from_right',
+        }}
       />
     </Stack.Navigator>
   );

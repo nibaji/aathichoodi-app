@@ -1,4 +1,5 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
-  "files.eol": "\r\n"
+  "files.eol": "\r\n",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
